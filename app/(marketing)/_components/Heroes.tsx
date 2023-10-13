@@ -11,7 +11,15 @@ export const Heroes = () => {
                         fill
                         priority
                         sizes="(max-width: 300px) 50vw, 300px"
-                        className="object-contain"
+                        className="object-contain dark:hidden"
+                        alt="documents image"
+                    />
+                    <Image
+                        src="/documents-dark.png"
+                        fill
+                        priority
+                        sizes="(max-width: 300px) 50vw, 300px"
+                        className="object-contain hidden dark:block"
                         alt="documents image"
                     />
                 </div>
@@ -21,7 +29,15 @@ export const Heroes = () => {
                         fill
                         priority
                         sizes="(max-width: 300px) 50vw, 300px"
-                        className="object-contain"
+                        className="object-contain dark:hidden"
+                        alt="reading image"
+                    />
+                    <Image
+                        src="/reading-dark.png"
+                        fill
+                        priority
+                        sizes="(max-width: 300px) 50vw, 300px"
+                        className="object-contain hidden dark:block"
                         alt="reading image"
                     />
                 </div>
