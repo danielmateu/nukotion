@@ -1,13 +1,15 @@
 "use client"
 
 import { cn } from "@/lib/utils";
-import { ChevronLeft, ChevronsLeft, MenuIcon } from "lucide-react"
+import { ChevronLeft, ChevronsLeft, MenuIcon, PlusIcon, Search, Settings } from "lucide-react"
 import { usePathname } from "next/navigation";
 import { ElementRef, useRef, useState, useEffect } from 'react';
 import { useMediaQuery } from "usehooks-ts";
 import { UserItem } from "./UserItem";
-import { useQuery } from "convex/react"
+import { useQuery, useMutation } from 'convex/react';
 import { api } from "@/convex/_generated/api";
+import { Item } from "./Item";
+import { toast } from "sonner";
 
 export const Navigation = () => {
 
@@ -15,6 +17,8 @@ export const Navigation = () => {
     const isMobile = useMediaQuery('(max-width: 768px)')
     // get documents
     const documents = useQuery(api.documents.get)
+    // create document
+    const create = useMutation(api.documents.create);
 
     const isResizingRef = useRef(false)
     const sidebarRef = useRef<ElementRef<"aside">>(null)
@@ -100,6 +104,16 @@ export const Navigation = () => {
         }
     }
 
+    const handleCreate = () => {
+        const promise = create({ title: "Sin título" })
+
+        toast.promise(promise, {
+            loading: "Creando una página nueva...",
+            success: "Página creada! 😊",
+            error: "Ha ocurrido algún problema al crear la página 😱"
+        })
+    }
+
     return (
         <>
             <aside
@@ -120,6 +134,18 @@ export const Navigation = () => {
                 </div>
                 <div>
                     <UserItem />
+                    <Item
+                        label="Buscar"
+                        icon={Search}
+                        isSearch
+                        onClick={() => { }}
+                    />
+                    <Item
+                        label="Opciones"
+                        icon={Settings}
+                        onClick={() => { }}
+                    />
+                    <Item onClick={handleCreate} label='Página nueva' icon={PlusIcon} />
                 </div>
                 <div className="mt-4">
                     {documents?.map((document) => (
