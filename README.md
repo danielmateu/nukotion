@@ -19,3 +19,4 @@ npx convex dev
 3. TailwindCss
 4. Convex
 5. Clerk
+6. sonner -> Sonner is an opinionated toast component for React.
