@@ -10,13 +10,14 @@ import { useQuery, useMutation } from 'convex/react';
 import { api } from "@/convex/_generated/api";
 import { Item } from "./Item";
 import { toast } from "sonner";
+import { DocumentList } from "./DocumentList";
 
 export const Navigation = () => {
 
     const pathname = usePathname()
     const isMobile = useMediaQuery('(max-width: 768px)')
     // get documents
-    const documents = useQuery(api.documents.get)
+    // const documents = useQuery(api.documents.get)
     // create document
     const create = useMutation(api.documents.create);
 
@@ -148,9 +149,10 @@ export const Navigation = () => {
                     <Item onClick={handleCreate} label='Página nueva' icon={PlusIcon} />
                 </div>
                 <div className="mt-4">
-                    {documents?.map((document) => (
+                    {/* {documents?.map((document) => (
                         <p key={document._id}>{document.title}</p>
-                    ))}
+                    ))} */}
+                    <DocumentList />
                 </div>
                 <div
                     onMouseDown={handleMouseDown}
