@@ -3,7 +3,11 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { Id } from "@/convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
-import { ChevronDown, ChevronRight, LucideIcon } from "lucide-react";
+import { ChevronDown, ChevronRight, LucideIcon, Plus } from "lucide-react";
+import { useMutation } from 'convex/react';
+import { api } from "@/convex/_generated/api";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 interface ItemProps {
     id?: Id<"documents">;
@@ -31,6 +35,40 @@ export const Item = ({
     icon: Icon
 }: ItemProps) => {
 
+    const create = useMutation(api.documents.create);
+    const router = useRouter()
+
+    const handleExpand = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        event.stopPropagation()
+        onExpand?.()
+    }
+
+    const onCreate = (events: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        events.stopPropagation()
+
+        if (!id) return
+
+        const promise = create({
+            title: "Sin título",
+            parentDocument: id
+        })
+            .then((documentId) => {
+                if (!expanded) {
+                    onExpand?.();
+                }
+
+                // router.push(`/documents/${documentId}`)
+            })
+
+        toast.promise(promise, {
+            loading: "Creando nueva nota...",
+            success: "Nota creada",
+            error: "Error al crear la nota"
+        })
+
+    }
+
+
     const ChevronIcon = expanded ? ChevronDown : ChevronRight
 
     return (
@@ -46,7 +84,7 @@ export const Item = ({
         >
             {!!id && (
                 <div
-                    onClick={() => { }}
+                    onClick={handleExpand}
                     role="button"
                     className="h-full rounded-sm hover:bg-neutral-300 dark:bg-neutral-600 mr-1">
                     <ChevronIcon
@@ -59,7 +97,7 @@ export const Item = ({
                     {documentIcon}
                 </div>
             ) : (
-                <Icon className="shrink-0 h-[18px] mr-2 text-muted-foreground group-hover:rotate-90 transition duration-300" />
+                <Icon className="shrink-0 h-[18px] mr-2 text-muted-foreground group-hover:rotate-12 transition duration-300" />
             )}
             <span className="truncate">
                 {label}
@@ -70,6 +108,16 @@ export const Item = ({
                         ctrl
                     </span>K
                 </kbd>
+            )}
+            {!!id && (
+                <div
+                    role="button"
+                    onClick={onCreate}
+                    className="ml-auto flex items-center gap-x-2">
+                    <div className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:bg-neutral-600">
+                        <Plus className="h-4 w-4 text-muted-foreground" />
+                    </div>
+                </div>
             )}
         </div>
     )
