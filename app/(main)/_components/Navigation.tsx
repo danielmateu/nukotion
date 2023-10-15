@@ -1,24 +1,25 @@
 "use client"
 
-import { cn } from "@/lib/utils";
-import { ChevronLeft, ChevronsLeft, MenuIcon, PlusIcon, Search, Settings } from "lucide-react"
-import { usePathname } from "next/navigation";
 import { ElementRef, useRef, useState, useEffect } from 'react';
-import { useMediaQuery } from "usehooks-ts";
-import { UserItem } from "./UserItem";
-import { useQuery, useMutation } from 'convex/react';
+import { usePathname } from "next/navigation";
+
 import { api } from "@/convex/_generated/api";
-import { Item } from "./Item";
+import { useMediaQuery } from "usehooks-ts";
+import { useMutation } from 'convex/react';
+
+import { cn } from "@/lib/utils";
+
+import { ChevronsLeft, MenuIcon, PlusIcon, Search, Settings } from "lucide-react"
 import { toast } from "sonner";
+
 import { DocumentList } from "./DocumentList";
+import { Item } from "./Item";
+import { UserItem } from "./UserItem";
 
 export const Navigation = () => {
 
     const pathname = usePathname()
     const isMobile = useMediaQuery('(max-width: 768px)')
-    // get documents
-    // const documents = useQuery(api.documents.get)
-    // create document
     const create = useMutation(api.documents.create);
 
     const isResizingRef = useRef(false)
@@ -149,9 +150,6 @@ export const Navigation = () => {
                     <Item onClick={handleCreate} label='Página nueva' icon={PlusIcon} />
                 </div>
                 <div className="mt-4">
-                    {/* {documents?.map((document) => (
-                        <p key={document._id}>{document.title}</p>
-                    ))} */}
                     <DocumentList />
                 </div>
                 <div
