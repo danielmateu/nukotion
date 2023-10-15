@@ -23,18 +23,21 @@ import { DocumentList } from "./DocumentList";
 import { Item } from './Item';
 import { UserItem } from "./UserItem";
 import { TrashBox } from './TrashBox';
+import { useSearch } from '@/hooks/useSearch';
 
 export const Navigation = () => {
 
     const pathname = usePathname()
     const isMobile = useMediaQuery('(max-width: 768px)')
     const create = useMutation(api.documents.create);
+    const search = useSearch()
 
     const isResizingRef = useRef(false)
     const sidebarRef = useRef<ElementRef<"aside">>(null)
     const navbarRef = useRef<ElementRef<"div">>(null)
     const [isReseting, setIsReseting] = useState(false)
     const [isCollapsed, setIsCollapsed] = useState(isMobile)
+
 
     useEffect(() => {
         if (isMobile) {
@@ -148,7 +151,7 @@ export const Navigation = () => {
                         label="Buscar"
                         icon={Search}
                         isSearch
-                        onClick={() => { }}
+                        onClick={search.onOpen}
                     />
                     <Item
                         label="Opciones"
