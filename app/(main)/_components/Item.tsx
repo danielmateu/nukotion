@@ -33,7 +33,7 @@ interface ItemProps {
     level?: number;
     onExpand?: () => void;
     label: string;
-    onClick: () => void;
+    onClick?: () => void;
     icon: LucideIcon;
 }
 
@@ -168,7 +168,7 @@ export const Item = ({
                         <div className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:bg-neutral-600">
                             <Plus className="h-4 w-4 text-muted-foreground" />
                         </div>
-                        D</div>
+                    </div>
                 </div>
             )}
         </div>

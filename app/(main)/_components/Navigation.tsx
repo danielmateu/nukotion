@@ -9,11 +9,18 @@ import { useMutation } from 'convex/react';
 
 import { cn } from "@/lib/utils";
 
-import { ChevronsLeft, MenuIcon, PlusIcon, Search, Settings } from "lucide-react"
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
+
+
+import { ChevronsLeft, MenuIcon, Plus, PlusCircle, PlusIcon, Search, Settings, Trash } from "lucide-react"
 import { toast } from "sonner";
 
 import { DocumentList } from "./DocumentList";
-import { Item } from "./Item";
+import { Item } from './Item';
 import { UserItem } from "./UserItem";
 
 export const Navigation = () => {
@@ -147,10 +154,30 @@ export const Navigation = () => {
                         icon={Settings}
                         onClick={() => { }}
                     />
-                    <Item onClick={handleCreate} label='Página nueva' icon={PlusIcon} />
+                    <Item onClick={handleCreate} label='Página nueva' icon={PlusCircle} />
                 </div>
                 <div className="mt-4">
                     <DocumentList />
+                    <Item
+                        label="Añadir página"
+                        icon={Plus}
+                        onClick={handleCreate}
+                    />
+                    <Popover>
+                        <PopoverTrigger className='w-full mt-4'>
+                            <Item
+                                label="Papelera"
+                                icon={Trash}
+                            // onClick={() => { }}
+                            />
+                        </PopoverTrigger>
+                        <PopoverContent side={isMobile ? "bottom" : "right"} className='p-0 w-72'>
+                            <p>
+                                Papelera
+                            </p>
+                        </PopoverContent>
+                    </Popover>
+
                 </div>
                 <div
                     onMouseDown={handleMouseDown}

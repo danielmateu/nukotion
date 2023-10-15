@@ -16,7 +16,7 @@ import { Item } from "./Item";
 interface DocumentListProps {
     parentDocumentId?: Id<"documents">;
     level?: number;
-    data?: Doc<"documents">
+    data?: Doc<"documents">[];
 }
 
 export const DocumentList = ({
@@ -61,42 +61,41 @@ export const DocumentList = ({
 
     return (
 
-        <div>
-            <>
-                <p
-                    style={{
-                        paddingLeft: level ? `${(level * 12) + 12}px` : "12px"
-                    }}
-                    className={cn(
-                        "hidden text-muted-foreground/80 text-sm font-medium",
-                        expanded && "last:block",
-                        level === 0 && "hidden",
-                    )}
-                >
-                    No hay páginas de momento
-                </p>
-                {documents?.map((document) => (
-                    <div key={document._id}>
-                        <Item
-                            id={document._id}
-                            onClick={() => onredirect(document._id)}
-                            label={document.title}
-                            icon={FileIcon}
-                            documentIcon={document.icon}
-                            active={params.documentId === document._id}
-                            level={level}
-                            onExpand={() => onExpand(document._id)}
-                            expanded={expanded[document._id]}
+
+        <>
+            <p
+                style={{
+                    paddingLeft: level ? `${(level * 12) + 12}px` : "12px"
+                }}
+                className={cn(
+                    "hidden text-muted-foreground/80 text-sm font-medium",
+                    expanded && "last:block",
+                    level === 0 && "hidden",
+                )}
+            >
+                No hay páginas de momento
+            </p>
+            {documents?.map((document) => (
+                <div key={document._id}>
+                    <Item
+                        id={document._id}
+                        onClick={() => onredirect(document._id)}
+                        label={document.title}
+                        icon={FileIcon}
+                        documentIcon={document.icon}
+                        active={params.documentId === document._id}
+                        level={level}
+                        onExpand={() => onExpand(document._id)}
+                        expanded={expanded[document._id]}
+                    />
+                    {expanded[document._id] && (
+                        <DocumentList
+                            parentDocumentId={document._id}
+                            level={level + 1}
                         />
-                        {expanded[document._id] && (
-                            <DocumentList
-                                parentDocumentId={document._id}
-                                level={level + 1}
-                            />
-                        )}
-                    </div>
-                ))}
-            </>
-        </div>
+                    )}
+                </div>
+            ))}
+        </>
     )
 }
