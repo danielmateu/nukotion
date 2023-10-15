@@ -2,6 +2,8 @@ import { v as v } from "convex/values"
 import { mutation, query } from "./_generated/server"
 import { Id } from "./_generated/dataModel";
 
+/* The `export const archive = mutation({ ... })` code block defines a mutation function named
+`archive`. */
 export const archive = mutation({
     args: { id: v.id("documents") },
     handler: async (ctx, args) => {
