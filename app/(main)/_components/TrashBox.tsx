@@ -10,6 +10,7 @@ import { toast } from "sonner"
 import { Spinner } from "@/components/Spinner"
 import { Input } from "@/components/ui/input"
 import { title } from "process"
+import { ConfirmModal } from "@/components/modals/ConfirmModal"
 
 export const TrashBox = () => {
 
@@ -96,12 +97,16 @@ export const TrashBox = () => {
                             >
                                 <Undo className="w-4 h-4 text-muted-foreground" />
                             </div>
-                            <div
-                                role="button"
-                                className="rounded-sm p-2 hover:bg-neutral-200"
-                                onClick={() => onRemove(document._id)}>
-                                <Trash className="h-4 w-4 text-muted-foreground " />
-                            </div>
+                            <ConfirmModal onConfirm={() => onRemove(document._id)}>
+                                <div
+                                    role="button"
+                                    className="rounded-sm p-2 hover:bg-neutral-200"
+                                    onClick={(event) => event.stopPropagation()}
+                                >
+                                    <Trash className="h-4 w-4 text-muted-foreground " />
+
+                                </div>
+                            </ConfirmModal>
                         </div>
                     </div>
                 ))}
