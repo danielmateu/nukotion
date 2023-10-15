@@ -24,16 +24,12 @@ import { Item } from './Item';
 import { UserItem } from "./UserItem";
 import { TrashBox } from './TrashBox';
 import { useSearch } from '@/hooks/useSearch';
+import { useSettings } from '@/hooks/useSettings';
 
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip"
 
 export const Navigation = () => {
 
+    const settings = useSettings()
     const pathname = usePathname()
     const isMobile = useMediaQuery('(max-width: 768px)')
     const create = useMutation(api.documents.create);
@@ -163,7 +159,7 @@ export const Navigation = () => {
                     <Item
                         label="Opciones"
                         icon={Settings}
-                        onClick={() => { }}
+                        onClick={settings.onOpen}
                     />
                     <Item onClick={handleCreate} label='Página nueva' icon={PlusCircle} />
                 </div>
@@ -176,26 +172,10 @@ export const Navigation = () => {
                     />
                     <Popover>
                         <PopoverTrigger className='w-full mt-4'>
-                            {/* <Tooltip>
-                                <TooltipTrigger>
-                                    <Item
-                                        label="Papelera"
-                                        icon={Trash}
-                                    />
-                                </TooltipTrigger>
-                                <TooltipContent
-                                    side="right"
-                                    align="center"
-                                >
-                                    <p>¿Que tenemos por aquí?</p>
-                                </TooltipContent>
-                            </Tooltip> */}
-
                             <Item
                                 label="Papelera"
                                 icon={Trash}
                             />
-
                         </PopoverTrigger>
                         <PopoverContent side={isMobile ? "bottom" : "right"} className='p-0 w-72'>
                             <TrashBox />

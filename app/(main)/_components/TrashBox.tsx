@@ -101,7 +101,7 @@ export const TrashBox = () => {
                         <div className="flex items-center">
                             <div
                                 role="button"
-                                className="rounded-sm p-2 hover:bg-neutral-200"
+                                className="rounded-sm p-2 hover:bg-neutral-200 dark:bg-neutral-600"
                                 onClick={(event) => onRestore(event, document._id)}
                             >
                                 <Tooltip>
@@ -119,7 +119,7 @@ export const TrashBox = () => {
                             <ConfirmModal onConfirm={() => onRemove(document._id)}>
                                 <div
                                     role="button"
-                                    className="rounded-sm p-2 hover:bg-neutral-200"
+                                    className="rounded-sm p-2 hover:bg-neutral-200 dark:bg-neutral-600"
                                     onClick={(event) => event.stopPropagation()}
                                 >
                                     <TooltipProvider>
@@ -135,8 +135,6 @@ export const TrashBox = () => {
                                             </TooltipContent>
                                         </Tooltip>
                                     </TooltipProvider>
-
-
                                 </div>
                             </ConfirmModal>
                         </div>
