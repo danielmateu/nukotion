@@ -20,3 +20,4 @@ npx convex dev
 4. Convex
 5. Clerk
 6. sonner -> Sonner is an opinionated toast component for React.
+7. Zustand -> Para manejar los estados 
