@@ -22,6 +22,7 @@ import { toast } from "sonner";
 import { DocumentList } from "./DocumentList";
 import { Item } from './Item';
 import { UserItem } from "./UserItem";
+import { TrashBox } from './TrashBox';
 
 export const Navigation = () => {
 
@@ -172,9 +173,7 @@ export const Navigation = () => {
                             />
                         </PopoverTrigger>
                         <PopoverContent side={isMobile ? "bottom" : "right"} className='p-0 w-72'>
-                            <p>
-                                Papelera
-                            </p>
+                            <TrashBox />
                         </PopoverContent>
                     </Popover>
 
