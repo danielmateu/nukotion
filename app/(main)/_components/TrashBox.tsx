@@ -11,6 +11,15 @@ import { Spinner } from "@/components/Spinner"
 import { Input } from "@/components/ui/input"
 import { title } from "process"
 import { ConfirmModal } from "@/components/modals/ConfirmModal"
+import { getSidebar } from '../../../convex/documents';
+
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
+
 
 export const TrashBox = () => {
 
@@ -95,7 +104,17 @@ export const TrashBox = () => {
                                 className="rounded-sm p-2 hover:bg-neutral-200"
                                 onClick={(event) => onRestore(event, document._id)}
                             >
-                                <Undo className="w-4 h-4 text-muted-foreground" />
+                                <Tooltip>
+                                    <TooltipTrigger>
+                                        <Undo className="w-4 h-4 text-muted-foreground" />
+                                    </TooltipTrigger>
+                                    <TooltipContent
+                                        side="bottom"
+                                        align="start"
+                                    >
+                                        <p>Restaurar documento</p>
+                                    </TooltipContent>
+                                </Tooltip>
                             </div>
                             <ConfirmModal onConfirm={() => onRemove(document._id)}>
                                 <div
@@ -103,7 +122,20 @@ export const TrashBox = () => {
                                     className="rounded-sm p-2 hover:bg-neutral-200"
                                     onClick={(event) => event.stopPropagation()}
                                 >
-                                    <Trash className="h-4 w-4 text-muted-foreground " />
+                                    <TooltipProvider>
+                                        <Tooltip>
+                                            <TooltipTrigger>
+                                                <Trash className="h-4 w-4 text-muted-foreground " />
+                                            </TooltipTrigger>
+                                            <TooltipContent
+                                                side="right"
+                                                align="center"
+                                            >
+                                                <p>Eliminar definitivamente</p>
+                                            </TooltipContent>
+                                        </Tooltip>
+                                    </TooltipProvider>
+
 
                                 </div>
                             </ConfirmModal>

@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils"
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
 import { Toaster, toast } from 'sonner';
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,7 +31,9 @@ export default function RootLayout({
             storageKey="nukotion-theme"
           >
             <Toaster position="bottom-center" />
-            {children}
+            <TooltipProvider>
+              {children}
+            </TooltipProvider>
           </ThemeProvider>
         </ConvexClientProvider>
       </body>

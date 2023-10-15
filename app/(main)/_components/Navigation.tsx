@@ -25,6 +25,13 @@ import { UserItem } from "./UserItem";
 import { TrashBox } from './TrashBox';
 import { useSearch } from '@/hooks/useSearch';
 
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
+
 export const Navigation = () => {
 
     const pathname = usePathname()
@@ -169,11 +176,26 @@ export const Navigation = () => {
                     />
                     <Popover>
                         <PopoverTrigger className='w-full mt-4'>
+                            {/* <Tooltip>
+                                <TooltipTrigger>
+                                    <Item
+                                        label="Papelera"
+                                        icon={Trash}
+                                    />
+                                </TooltipTrigger>
+                                <TooltipContent
+                                    side="right"
+                                    align="center"
+                                >
+                                    <p>¿Que tenemos por aquí?</p>
+                                </TooltipContent>
+                            </Tooltip> */}
+
                             <Item
                                 label="Papelera"
                                 icon={Trash}
-                            // onClick={() => { }}
                             />
+
                         </PopoverTrigger>
                         <PopoverContent side={isMobile ? "bottom" : "right"} className='p-0 w-72'>
                             <TrashBox />
