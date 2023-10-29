@@ -36,14 +36,9 @@ export const SettingsModal = () => {
                             Customiza la apariencia de Nukotion en tu dispositivo
                         </span>
                     </div>
+                    <ModeToggle />
                 </div>
-                {/* <DialogTitle>Are you sure absolutely sure?</DialogTitle> */}
-                {/* <DialogDescription>
-                        This action cannot be undone. This will permanently delete your account
-                        and remove your data from our servers.
-                    </DialogDescription> */}
             </DialogContent>
         </Dialog>
-
     )
 }

@@ -98,10 +98,10 @@ export const TrashBox = () => {
                         className="text-sm rounded-sm w-full hover:bg-primary/5 flex items-center text-primary justify-between"
                     >
                         <span className="truncate pl-2 ">{document.title}</span>
-                        <div className="flex items-center">
+                        <div className="flex items-center gap-1 mb-1">
                             <div
                                 role="button"
-                                className="rounded-sm p-2 hover:bg-neutral-200 dark:bg-neutral-600"
+                                className="rounded-sm p-2 hover:bg-neutral-200 dark:bg-neutral-600 dark:hover:bg-neutral-700"
                                 onClick={(event) => onRestore(event, document._id)}
                             >
                                 <Tooltip>
@@ -119,7 +119,7 @@ export const TrashBox = () => {
                             <ConfirmModal onConfirm={() => onRemove(document._id)}>
                                 <div
                                     role="button"
-                                    className="rounded-sm p-2 hover:bg-neutral-200 dark:bg-neutral-600"
+                                    className="rounded-sm p-2 hover:bg-neutral-200 dark:bg-neutral-600 dark:hover:bg-neutral-700"
                                     onClick={(event) => event.stopPropagation()}
                                 >
                                     <TooltipProvider>

@@ -1,12 +1,15 @@
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
 import { cn } from "@/lib/utils"
-import { ConvexClientProvider } from "@/components/providers/convex-provider";
 import { Toaster, toast } from 'sonner';
+
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ModalProvider } from "@/components/providers/modal-provider";
+import { ConvexClientProvider } from "@/components/providers/convex-provider";
+
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
