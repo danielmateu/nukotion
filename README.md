@@ -18,6 +18,9 @@ CONVEX_DEPLOYMENT=
 NEXT_PUBLIC_CONVEX_URL=
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 CLERK_SECRET_KEY=
+
+EDGE_STORE_ACCESS_KEY=
+EDGE_STORE_SECRET_KEY=
 ```
 
 
@@ -30,3 +33,5 @@ CLERK_SECRET_KEY=
 5. Clerk
 6. sonner -> Sonner is an opinionated toast component for React.
 7. Zustand -> Para manejar los estados 
+
+8. edgestore -> Para el stock de las imagenes del proyecto

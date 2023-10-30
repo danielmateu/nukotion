@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ModalProvider } from "@/components/providers/modal-provider";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
-
+import { EdgeStoreProvider } from '../lib/edgestore';
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -27,19 +27,21 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning>
       <body className={cn("dark:dark:bg-[#1f1f1f]", inter.className)}>
         <ConvexClientProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-            storageKey="nukotion-theme"
-          >
-            <Toaster position="bottom-center" />
-            <TooltipProvider>
-              <ModalProvider />
-              {children}
-            </TooltipProvider>
-          </ThemeProvider>
+          <EdgeStoreProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+              storageKey="nukotion-theme"
+            >
+              <Toaster position="bottom-center" />
+              <TooltipProvider>
+                <ModalProvider />
+                {children}
+              </TooltipProvider>
+            </ThemeProvider>
+          </EdgeStoreProvider>
         </ConvexClientProvider>
       </body>
     </html>
