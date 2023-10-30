@@ -9,6 +9,7 @@ import { Title } from "./Title";
 import { Banner } from "./Banner";
 import { Menu } from "./Menu";
 import { Skeleton } from '@/components/ui/skeleton';
+import DocumentPage from "../(routes)/documents/[documentId]/page";
 interface NavbarProps {
     isCollapsed: boolean;
     onResetWidth: () => void;
