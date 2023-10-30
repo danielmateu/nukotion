@@ -7,6 +7,7 @@ import { useQuery } from "convex/react";
 import { MenuIcon } from "lucide-react";
 import { useParams } from "next/navigation";
 import { Title } from "./Title";
+import { Banner } from "./Banner";
 
 
 interface NavbarProps {
@@ -49,6 +50,9 @@ export const Navbar = ({
                     />
                 </div>
             </nav>
+            {document.isArchived && (
+                <Banner documentId={document._id} />
+            )}
         </>
     )
 }
