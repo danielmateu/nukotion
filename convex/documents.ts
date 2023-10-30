@@ -326,3 +326,32 @@ export const update = mutation({
         return document;
     }
 })
+
+export const removeIcon = mutation({
+    args: { id: v.id("documents") },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+
+        if (!identity) {
+            throw new Error("Not authenticated");
+        }
+
+        const userId = identity.subject;
+
+        const existingDocument = await ctx.db.get(args.id);
+
+        if (!existingDocument) {
+            throw new Error("Documento no encontrado");
+        }
+
+        if (existingDocument.userId !== userId) {
+            throw new Error("No tienes permisos para editar este documento");
+        }
+
+        const document = await ctx.db.patch(args.id, {
+            icon: undefined
+        });
+
+        return document;
+    }
+})
