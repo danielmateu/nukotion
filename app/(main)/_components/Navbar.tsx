@@ -1,6 +1,5 @@
 "use client"
 
-import { Spinner } from "@/components/Spinner";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useQuery } from "convex/react";
@@ -9,8 +8,7 @@ import { useParams } from "next/navigation";
 import { Title } from "./Title";
 import { Banner } from "./Banner";
 import { Menu } from "./Menu";
-
-
+import { Skeleton } from '@/components/ui/skeleton';
 interface NavbarProps {
     isCollapsed: boolean;
     onResetWidth: () => void;
@@ -27,8 +25,11 @@ export const Navbar = ({
 
     if (document === undefined) {
         return (
-            <nav className="bg-background dark:bg-[#1f1f1f] px-3 py-2 w-full flex items-center">
+            <nav className="bg-background dark:bg-[#1f1f1f] px-3 py-2 w-full flex items-center justify-between">
                 <Title.Skeleton />
+                <div className="flex items-center gap-x-2">
+                    <Menu.Skeleton />
+                </div>
             </nav>
         )
     }
