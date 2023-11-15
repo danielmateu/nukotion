@@ -40,7 +40,7 @@ const Editor = ({
         uploadFile: handleUpload
     })
     return (
-        <div>
+        <div className="z-50">
             <BlockNoteView
                 editor={editor}
                 theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
