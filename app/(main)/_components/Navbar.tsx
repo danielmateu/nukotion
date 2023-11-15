@@ -10,6 +10,7 @@ import { Banner } from "./Banner";
 import { Menu } from "./Menu";
 import { Skeleton } from '@/components/ui/skeleton';
 import DocumentPage from "../(routes)/documents/[documentId]/page";
+import { Publish } from "./Publish";
 interface NavbarProps {
     isCollapsed: boolean;
     onResetWidth: () => void;
@@ -52,6 +53,7 @@ export const Navbar = ({
                         initialData={document}
                     />
                     <div className="flex items-center gap-x-2">
+                        <Publish initialData={document} />
                         <Menu documentId={document._id} />
                     </div>
                 </div>
