@@ -14,18 +14,18 @@ const DocumentsPage = () => {
 
     const { user } = useUser()
     const create = useMutation(api.documents.create);
-    const router = useRouter();
+    // const router = useRouter();
 
-    const onCreate = () => {
-        const promise = create({ title: "Sin título" })
-            .then((documentId) => router.push(`/documents/${documentId}`))
+    // const onCreate = () => {
+    //     const promise = create({ title: "Sin título" })
+    //         .then((documentId) => router.push(`/documents/${documentId}`))
 
-        toast.promise(promise, {
-            loading: "Creando una nota nueva...",
-            success: "Nota creada! 😊",
-            error: "Ha ocurrido algún problema al crear la nota 😱"
-        })
-    }
+    //     toast.promise(promise, {
+    //         loading: "Creando una nota nueva...",
+    //         success: "Nota creada! 😊",
+    //         error: "Ha ocurrido algún problema al crear la nota 😱"
+    //     })
+    // }
 
     return (
         <div className="h-full flex flex-col items-center justify-center space-y-4">
@@ -45,10 +45,10 @@ const DocumentsPage = () => {
             />
             <h2 className="text-lg font-medium"
             >Bienvenid@ al Nukotion de {user?.firstName}</h2>
-            <Button onClick={onCreate}>
+            {/* <Button onClick={onCreate}>
                 <PlusCircle className="w-4 h-4 mr-2" />
                 Crea una nota
-            </Button>
+            </Button> */}
         </div>
     )
 }

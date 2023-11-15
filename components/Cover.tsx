@@ -24,6 +24,7 @@ export const Cover = ({
     const coverImage = useCoverImage()
     const removeCoverImage = useMutation(api.documents.removeCoverImage)
     const params = useParams()
+    
     const { edgestore } = useEdgeStore()
 
     const onRemove = async () => {
