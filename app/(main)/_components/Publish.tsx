@@ -24,7 +24,7 @@ export const Publish = (
     const [copied, setCopied] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    const url = `${origin}/preview/${initialData._id}/page`;
+    const url = `${origin}/preview/${initialData._id}`;
 
     const onPublish = async () => {
         setIsSubmitting(true)
