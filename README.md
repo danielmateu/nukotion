@@ -35,3 +35,4 @@ EDGE_STORE_SECRET_KEY=
 7. Zustand -> Para manejar los estados 
 
 8. edgestore -> Para el stock de las imagenes del proyecto
+7. blocknote

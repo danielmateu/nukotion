@@ -1,7 +1,7 @@
 "use client"
 
 import { ElementRef, useRef, useState, useEffect } from 'react';
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 
 import { api } from "@/convex/_generated/api";
 import { useMediaQuery } from "usehooks-ts";
@@ -27,8 +27,6 @@ import { useSearch } from '@/hooks/useSearch';
 import { useSettings } from '@/hooks/useSettings';
 import { Navbar } from './Navbar';
 
-
-
 export const Navigation = () => {
 
     const settings = useSettings()
@@ -37,6 +35,7 @@ export const Navigation = () => {
     const create = useMutation(api.documents.create);
     const search = useSearch()
     const params = useParams()
+    const router = useRouter()
 
     const isResizingRef = useRef(false)
     const sidebarRef = useRef<ElementRef<"aside">>(null)
@@ -125,6 +124,7 @@ export const Navigation = () => {
 
     const handleCreate = () => {
         const promise = create({ title: "Sin título" })
+            .then((documentId) => (router.push(`/documents/${documentId}`)))
 
         toast.promise(promise, {
             loading: "Creando una página nueva...",
